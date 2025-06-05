@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Spam Classifier</title>
+  <style>
+    body {
+      background: linear-gradient(to right, #ffecd2, #fcb69f);
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+    .container {
+      background-color: white;
+      padding: 40px;
+      border-radius: 15px;
+      box-shadow: 0px 0px 15px rgba(0,0,0,0.1);
+      width: 400px;
+      text-align: center;
+    }
+    input[type="text"] {
+      width: 100%;
+      padding: 10px;
+      margin: 15px 0;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+    }
+    button {
+      padding: 10px 20px;
+      background-color: #ff5e62;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+    .result {
+      margin-top: 20px;
+      font-weight: bold;
+      font-size: 20px;
+      color: #222;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>Email/SMS Spam Classifier</h2>
+    <form method="POST" action="/predict">
+      <input type="text" name="user_input" placeholder="Type your message here..." required>
+      <br>
+      <button type="submit">Classify</button>
+    </form>
+
+    {% if prediction %}
+      <div class="result">
+        <p><strong>Message:</strong> "{{ user_input }}"</p>
+        <p><strong>Prediction:</strong> {{ prediction }}</p>
+      </div>
+    {% endif %}
+  </div>
+</body>
+</html>
